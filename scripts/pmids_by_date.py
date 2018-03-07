@@ -1,6 +1,7 @@
 #!/usr/bin/python
 
 import datetime as dt
+import os
 import os.path as op
 import re
 import sys
@@ -46,11 +47,10 @@ def main():
             out_str += curr_date_str.replace('/','-') + " " + pmid_match.group('pmid') + "\n"
 
         if len(out_str) > 0:
+            os.makedirs(os.path.dirname(output_file), exist_ok=True) # make path if directory doesn't exist
             with open(output_file, 'w') as fout:
                 fout.write(out_str)
-
                 print(output_file)
 
 if __name__ == '__main__':
     main()
-
